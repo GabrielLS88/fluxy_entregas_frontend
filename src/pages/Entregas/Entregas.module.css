@@ -1,0 +1,28 @@
+
+.sectionPageEntregas {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  position: relative;
+}
+
+
+.containerPageEntregas{
+  width: 95%;
+  height: auto;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  box-sizing: border-box;
+  background-color: var(--bg-modal);
+  border-radius: 8px;
+  padding: 20px;
+}
