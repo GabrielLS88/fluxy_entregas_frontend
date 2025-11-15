@@ -17,6 +17,7 @@ body{
 
 :root {
   --primay-color: #8C52FF;
+  --primay-color_hover: #8c52ffc5;
   --secondary-color: #03dac6;
   --bg-primary: #e0e0e0;
 
