@@ -7,7 +7,6 @@
   background-color: var(--bg-primary);
 }
 
-/* Container geral */
 .containerPageEntregas {
   width: 98%;
   background-color: var(--bg-modal);
@@ -17,10 +16,10 @@
   flex-direction: column;
   gap: 20px;
   margin-top: 20px;
-  box-shadow: 0px 0px 10px #00000015;
+  box-shadow: 0px 0px 20px #00000015;
+  margin-bottom: 20px;
 }
 
-/* Card individual */
 .modalEntregas {
   width: 100%;
   background-color: var(--bg-primary-logo);
@@ -30,19 +29,15 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  /* Estilo card bonito */
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Efeito hover */
 .modalEntregas:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
 }
 
-/* Título do card */
 .modalEntregas h1 {
   margin: 0 0 10px 0;
   font-size: 1.4rem;
@@ -52,20 +47,17 @@
   padding-bottom: 8px;
 }
 
-/* Informações */
 .modalEntregas p {
   font-size: 1rem;
   margin: 0;
   line-height: 1.5;
 }
 
-/* Destaque das labels */
 .modalEntregas p b {
   color: #ffffff;
   opacity: 0.9;
 }
 
-/* Responsividade — organiza tudo em cards lado a lado quando a tela for grande */
 @media (min-width: 900px) {
   .containerPageEntregas {
     display: grid;

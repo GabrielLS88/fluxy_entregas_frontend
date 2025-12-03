@@ -1,6 +1,6 @@
 import Style from './AtualizarEntrega.module.css';
 import NaveBar from '../../components/NaveBar/NaveBar.jsx';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { toast } from "sonner";
 import { useDelivery } from "../../components/AppContext/AppContex.jsx";
 
@@ -16,8 +16,20 @@ export default function AtualizarEntrega() {
     zip_code: '',
     house_number: '',
     code_tracking: '',
-    status: ''
+    status: '',
+    createdAt: '',
+    deliveryDate: ''
   });
+
+  // Função para converter ISO → YYYY-MM-DD (para input type="date")
+  function converterParaInputDate(dataISO) {
+    if (!dataISO) return "";
+    const data = new Date(dataISO);
+    const ano = data.getUTCFullYear();
+    const mes = String(data.getUTCMonth() + 1).padStart(2, "0");
+    const dia = String(data.getUTCDate()).padStart(2, "0");
+    return `${ano}-${mes}-${dia}`;
+  }
 
   const buscarEntrega = () => {
     const entrega = deliveries.find((d) => d._id == idEntrega);
@@ -27,7 +39,13 @@ export default function AtualizarEntrega() {
       return;
     }
 
-    setFormData(entrega);
+    // Converte datas para o input date
+    setFormData({
+      ...entrega,
+      createdAt: converterParaInputDate(entrega.createdAt),
+      deliveryDate: converterParaInputDate(entrega.deliveryDate)
+    });
+
     setEntregaEncontrada(true);
     toast.success("Entrega encontrada com sucesso!");
   };
@@ -73,22 +91,22 @@ export default function AtualizarEntrega() {
             <label>Digite o ID da entrega</label>
             <input
               className={Style.inputEntrega}
+              placeholder='Você pode localizar esse ID nas entregas presentes na tela inicial'
               value={idEntrega}
               onChange={(e) => setIdEntrega(e.target.value)}
               type="text"
             />
           </div>
-
-          
         </div>
+
         <div className={Style.inputsAtualizarEntrega}>
-            <button
-              className={Style.buttonBuscarCadastro}
-              onClick={buscarEntrega}
-            >
-              Buscar Entrega
-            </button>
-          </div>
+          <button
+            className={Style.buttonBuscarCadastro}
+            onClick={buscarEntrega}
+          >
+            Buscar Entrega
+          </button>
+        </div>
       </div>
 
       {entregaEncontrada && (
@@ -98,33 +116,56 @@ export default function AtualizarEntrega() {
           </div>
 
           <div className={Style.spaceInputsAtualizarEntrega}>
-            {Object.keys(formData).map((key) => (
-              <div className={Style.inputsAtualizarEntrega} key={key}>
-                <label>{key.replace("_", " ").toUpperCase()}</label>
-                <input
-                  className={Style.inputEntrega}
-                  value={formData[key]}
-                  type={key.includes("price") || key.includes("zip") ? "number" : "text"}
-                  onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
-                />
-              </div>
-            ))}
 
-            <div className={Style.buttonsActions}>
-              <button
-                className={Style.buttonEnviarCadastro}
-                onClick={salvarAtualizacao}
-              >
-                Atualizar
-              </button>
+            {Object.keys(formData).map((key) => {
+              if (key === "_V" || key === "__v" || key === "updatedAt") return null;
 
-              <button
-                className={Style.buttonExcluir}
-                onClick={removerEntrega}
-              >
-                Excluir Entrega
-              </button>
-            </div>
+              const value = formData[key];
+
+              return (
+                <div className={Style.inputsAtualizarEntrega} key={key}>
+                  <label>{key.replace("_", " ").toUpperCase()}</label>
+
+                  <input
+                    className={Style.inputEntrega}
+
+                    type={
+                      key === "createdAt" || key === "deliveryDate"
+                        ? "date"
+                        : key.includes("price") || key.includes("zip")
+                          ? "number"
+                          : "text"
+                    }
+
+                    value={value}
+
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        [key]: e.target.value
+                      })
+                    }
+                  />
+                </div>
+              );
+            })}
+
+
+          </div>
+          <div className={Style.buttonsActions}>
+            <button
+              className={Style.buttonEnviarCadastro}
+              onClick={salvarAtualizacao}
+            >
+              Atualizar
+            </button>
+
+            <button
+              className={Style.buttonExcluir}
+              onClick={removerEntrega}
+            >
+              Excluir Entrega
+            </button>
           </div>
         </div>
       )}

@@ -6,6 +6,28 @@ import { useEffect } from 'react';
 export default function Entregas() {
     const { deliveries } = useDelivery();
 
+    function converterParaBrasileiro(dataISO) {
+        const data = new Date(dataISO);
+
+        const dia = String(data.getUTCDate()).padStart(2, '0');
+        const mes = String(data.getUTCMonth() + 1).padStart(2, '0');
+        const ano = data.getUTCFullYear();
+
+        const horas = String(data.getUTCHours()).padStart(2, '0');
+        const minutos = String(data.getUTCMinutes()).padStart(2, '0');
+        const segundos = String(data.getUTCSeconds()).padStart(2, '0');
+
+        return `${dia}/${mes}/${ano}`;
+    }
+
+    function formatarReal(valor) {
+        return Number(valor).toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        });
+    }
+
+
     useEffect(() => {
         console.log(deliveries)
     }, [deliveries])
@@ -22,19 +44,23 @@ export default function Entregas() {
                             <div key={dev.code_product} className={Style.modalEntregas}>
                                 <h1><b>{dev.product}</b></h1>
                                 <p>
-                                    <b>Valor:</b> {dev.price_product}
+                                    <b>ID da entrega:</b> {dev._id}
                                 </p>
                                 <p>
-                                    <b>Data de entrega:</b> {dev.deliveryDate}
+                                    <b>Valor do produto + Taxa:</b> {formatarReal(dev.price_product)}
+                                </p>
+
+                                <p>
+                                    <b>Data de entrega:</b> {converterParaBrasileiro(dev.deliveryDate)}
                                 </p>
                                 <p>
                                     <b>Status de intrega:</b> {dev.status}
                                 </p>
                                 <p>
-                                    <b>ID de rastreio:</b> {dev.code_tracking}
+                                    <b>Codigo de rastreio para cliente:</b> {dev.code_tracking}
                                 </p>
                                 <p>
-                                    <b>Data de criação:</b> {dev.createdAt}
+                                    <b>Data de criação:</b> {converterParaBrasileiro(dev.createdAt)}
                                 </p>
                                 <p>
                                     <b>Número da casa:</b> {dev.house_number}
@@ -42,9 +68,7 @@ export default function Entregas() {
                                 <p>
                                     <b>CEP:</b> {dev.zip_code}
                                 </p>
-                                <p>
-                                    <b>ID da entrega:</b> {dev._id}
-                                </p>
+
                             </div>
                         )
                     })
