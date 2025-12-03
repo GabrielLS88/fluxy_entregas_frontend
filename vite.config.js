@@ -8,7 +8,9 @@ export default defineConfig({
     port: 3000,
     https: false,
     allowedHosts: [],
-    hmr: true
+    hmr: {
+      overlay: false
+    }
   },
 });
 

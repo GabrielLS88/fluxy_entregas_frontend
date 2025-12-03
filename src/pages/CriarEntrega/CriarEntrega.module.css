@@ -1,83 +1,96 @@
 
 .sectionPageCriarEntregas {
   width: 100%;
-  height: auto;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
   flex-direction: column;
-  background-color: var(--bg-primary);
-  position: relative;
+  align-items: center;
+  background: var(--bg-primary);
 }
 
-
-.containerPageCriarEntregas{
+.containerPageCriarEntregas {
   width: 95%;
-  height: auto;
+  max-width: 900px;
+  background: var(--bg-modal);
+  padding: 32px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  animation: fadeIn 0.4s ease-in-out;
+  margin-top: 30px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.spaceParaTituloModal {
+  margin-bottom: 25px;
+}
+
+.tituloSpaceModal {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--primay-color);
+}
+
+.spaceInputsCriarEntrega {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px 25px;
+}
+
+.inputsCriarEntrega {
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: start;
-  margin-top: 20px;
-  box-sizing: border-box;
-  background-color: var(--bg-modal);
+  gap: 6px;
+}
+
+.inputsCriarEntrega label {
+  font-size: 15px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.inputEntrega {
+  border: 1px solid #d1d1d1;
+  background: #fcfcfc;
+  padding: 10px 12px;
+  font-size: 15px;
   border-radius: 8px;
-  padding: 2%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  outline: none;
+  transition: 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.spaceParaTituloModal{
-    width: 100%;
-    display: flex;
-    align-items: start;
-    justify-content: start;
-    margin-bottom: 20px;
+.inputEntrega:focus {
+  border-color: var(--primay-color);
+  box-shadow: 0 0 6px rgba(0,0,0,0.12);
+  background: white;
 }
 
-.tituloSpaceModal{
-    font-size: 24px;
-    font-weight: 300;
-    color: var(--text-primary);
+.buttonEnviarCadastro {
+  grid-column: 1 / -1;
+  padding: 12px;
+  font-size: 17px;
+  background: var(--primay-color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.25s ease-in-out;
+  font-weight: 600;
+  margin-top: 20px;
 }
 
-.spaceInputsCriarEntrega{
-    width: 100%;
-    display: flex;
-    align-items: end;
-    justify-content: start;
-    flex-wrap: wrap;
-    gap: 30px;
+.buttonEnviarCadastro:hover {
+  background: var(--primay-color_hover);
+  transform: translateY(-2px);
 }
 
-.inputsCriarEntrega{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    width: auto;
-    min-width: 10%;
-}
-
-.inputEntrega{
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 8px;
-    outline: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.buttonEnviarCadastro{
-    padding: 10px 20px;
-    background-color: var(--primay-color);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.3s ease-in-out;
-}
-
-
-.buttonEnviarCadastro:hover{
-    background-color: var(--primay-color_hover);
+.buttonEnviarCadastro:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }
