@@ -1,4 +1,4 @@
-# Fluxy Serviços
+# Fluxy Entregas Front End
  
 Aplicação desenvolvida em **React + Vite**, utilizando **React Router** para gerenciamento de rotas e componentes separados para organização. O objetivo deste projeto é gerenciar os serviços de entregas que uma empresa precisa fazer.
 
@@ -7,8 +7,8 @@ Aplicação desenvolvida em **React + Vite**, utilizando **React Router** para g
 - **React**
 - **Vite**
 - **React Router DOM**
-- CSS Modules / Tailwind / Styled Components (ajuste conforme seu projeto)
-- Axios (caso use API)
+- **CSS Modules**
+- **Axios**
 
 ---
 
