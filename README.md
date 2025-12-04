@@ -1,8 +1,30 @@
-# React + Vite
+# Fluxy Serviços
+ 
+Aplicação desenvolvida em **React + Vite**, utilizando **React Router** para gerenciamento de rotas e componentes separados para organização. O objetivo deste projeto é gerenciar os serviços de entregas que uma empresa precisa fazer.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tecnologias Utilizadas
 
-Currently, two official plugins are available:
+- **React**
+- **Vite**
+- **React Router DOM**
+- CSS Modules / Tailwind / Styled Components (ajuste conforme seu projeto)
+- Axios (caso use API)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+
+## Estrutura do Projeto (simplificado)
+
+- Temos a pasta src que possui nossos componentes, routes, services e styles
+
+
+## Como rodar o projeto?
+
+Clone o repositorio abaixo:
+https://github.com/GabrielLS88/fluxy_entregas_frontend
+
+Apos baixar você precisa configurar o .env na raiz do projeto com as variaveis de ambiente:
+VITE_API_URL="http://localhost:5090" -> URL do backend
+VITE_TOKEN_API_URL="Bearer 795b57b1-0d5c-4f77-9259-473afafac234-1960657" -> Token fixo que o backend esta esperando receber
+
+Agora vamos baixar as dependencias com o comando "npm i" no terminal de comando dentro da raiz do projeto
+Depois rodar "npm run dev" que ele começa a fica disponivel na url  "http://localhost:3494/"
